@@ -2,6 +2,8 @@ import UserModels from '../models/user.models'
 import jwt from 'jsonwebtoken';
 import config from '../config'
 
+import Role from '../models/roles.models'
+
 export const singup= async(req , res) =>{
 
     const {username , email ,  password , roles } = req.body
@@ -12,8 +14,19 @@ export const singup= async(req , res) =>{
         password : await UserModels.encryptPassword(password),//con esto guardo la contraseña cifrada del usuario
     })
     console.log(newUser);
-    const userSave = await newUser.save();
 
+    //antes de guardar nuestro usuario comprobamos si existen roles relacionados con este usuario
+    if(roles){
+      const foundRoles=   await  Role.find({name : {$in : roles}});
+      newUser.roles = foundRoles.map(role => role._id);
+    }else{
+        const role = await Role.findOne({name : "user"})
+        newUser.roles = [role._id];
+    }
+
+
+    const userSave = await newUser.save();
+    console.log(userSave)
     //con esto vamos a crear un token que devolveremos para que el front end se encarge de mandar
     //peticones con este token.
     //mandaremos tres datos ,el primero seran datos , el segundo una clave secreta y el ultimo el objeto de configuracion
@@ -28,9 +41,26 @@ export const singup= async(req , res) =>{
 
 export const singin = async (req , res) => {
 
+    const userFound = await UserModels.findOne({email : req.body.email}).populate('roles');
+
+    if(!userFound){
+        res.status(400).json({message : 'User not found'})
+    }
+
+   const matcPassword = await UserModels.comparePassword(req.body.password , userFound.password)
+
+    if(!matcPassword){
+        res.status(400).json({token : null , message : 'invalid password'})
+    }
+
+    const token =  jwt.sign({id: userFound._id} , config.SECRET, {expiresIn : 86400})
+
+    console.log(userFound)
+
+
     res
     .status(200)
-    .json('singin')
+    .json({token})
 }
 
 
