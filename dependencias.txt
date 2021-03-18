@@ -23,4 +23,7 @@ babel -->  es un traspilador de javascrip pra poder trabajar con ESM6 y que el c
 			@babel/core  --> babel en si
 			@babel/cli 	--> babel por consola de comandos
 			@babel/node --> usar babel con node
-			@bable-preset-env --> usar las ultimas caracteristicas de em6
+			@bable/preset-env --> usar las ultimas caracteristicas de em6
+			todo esto se instala como desarrollo no para produccion.
+
+			

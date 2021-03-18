@@ -1,19 +1,19 @@
 {
   "name": "atenticacionMONGONODE",
   "version": "1.0.0",
-  "description": "",
+  "description": "API REST",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index",
-    "dev": "nodemon src/index"
+    "build": "babel src --out-dir build",
+    "dev": "nodemon src/index.js --exec babel-node",
+    "start": "node build/index"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/russelldelgado/autenticacionMongoNode.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Russell Delgado Muñoz",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/russelldelgado/autenticacionMongoNode/issues"
