@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const opt = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false,
+    useFindAndModify: true,
     useCreateIndex: true
   };
 
