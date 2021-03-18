@@ -1,0 +1,26 @@
+npmi express ---> servidor
+bcryptjs -->cifrar datos 
+cors --> para comunicar otros servidores con el mio cuando lo esten utilizando
+	cuando lanzamos un servidor se crea un puerto en el 4200 o algo por el estilo ,
+	para que otros puedan comunicarse con mi backend necesitaremos definir
+	algunas reglas , y para ello usamos cors.
+dotenv --> nos sirve para poder crear variables de entorno 
+jsonwebtoken --> lo utilizamos para autentificar usuarios en nuestra api, para que 
+		no todo el mundo pueda pedir datos a nuestras url , solo los 
+		usuarios autentificados previamente y aceptados por nosotros.
+		es como un pase o contraseña que le permite obtener cosas.
+mongoose --> nos permite conectarnos a la base de datos y manipular datos desde ahi
+	     mongooose no es la base de datos , es solo el modulo de coneccion con 
+		nuestra base de datos que es mongodb
+morgan --> para ver las consultas , o peticiones que van llegando a nuestro servidor
+helmet --> para que nuestro servidor no de tanta informacion al respecto , sobre
+		la version , datos etc....
+nodemon --> para poder correr el programa y no estar lanzando una y otra vez lo que es el servidor
+			lo instalamos solo apra desarrollo. npm i  nodemon --save-dotenv
+babel -->  es un traspilador de javascrip pra poder trabajar con ESM6 y que el codigo se traspile 
+			a EMS5 ya que los navegadores no pueden entender el 6 del todo aun.
+			npm i 
+			@babel/core  --> babel en si
+			@babel/cli 	--> babel por consola de comandos
+			@babel/node --> usar babel con node
+			@bable-preset-env --> usar las ultimas caracteristicas de em6
